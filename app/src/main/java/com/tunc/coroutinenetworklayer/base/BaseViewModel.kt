@@ -2,10 +2,7 @@ package com.tunc.coroutinenetworklayer.base
 
 import androidx.lifecycle.ViewModel
 import com.tunc.coroutinenetworklayer.data.exception.ApiErrorHandle
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancel
+import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 open class BaseViewModel : ViewModel() {
@@ -19,5 +16,9 @@ open class BaseViewModel : ViewModel() {
 
     fun cancelRequest() = coroutineContext.cancel()
 
+    override fun onCleared() {
+        super.onCleared()
+        scope.coroutineContext.cancelChildren()
+    }
 
 }
