@@ -25,4 +25,5 @@ class BaseService(private val scope: CoroutineScope, private val apiErrorHandle:
         }
 
     }
+
 }

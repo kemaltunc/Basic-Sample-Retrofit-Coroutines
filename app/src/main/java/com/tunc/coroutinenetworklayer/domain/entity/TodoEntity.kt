@@ -1,6 +1,6 @@
-package com.tunc.coroutinenetworklayer.data.model
+package com.tunc.coroutinenetworklayer.domain.entity
 
-data class TodoModel(
+data class TodoEntity(
     var userId: Int,
     var id: Int,
     var title: String,
