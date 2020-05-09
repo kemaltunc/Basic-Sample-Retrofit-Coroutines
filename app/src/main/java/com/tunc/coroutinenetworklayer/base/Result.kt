@@ -3,9 +3,12 @@ package com.tunc.coroutinenetworklayer.base
 import com.tunc.coroutinenetworklayer.data.exception.ErrorModel
 
 
-abstract class Result<T> constructor(private val mvpView: AppCallback) : ServiceCallBack<T> {
+abstract class Result<T> constructor(
+    private val mvpView: AppCallback,
+    private val showLoading: Boolean = false
+) : ServiceCallBack<T> {
     init {
-        mvpView.showLoading()
+        if (showLoading) mvpView.showLoading()
     }
 
     override fun onSuccess(response: T?) {

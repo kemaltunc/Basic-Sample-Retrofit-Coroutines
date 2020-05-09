@@ -14,7 +14,7 @@ class MainActivityVM : BaseViewModel() {
     fun getTodo() {
         apiRequest.execute(
             call = { useCase.getTodo() },
-            result = object : Result<List<TodoEntity>>(appCallback) {
+            result = object : Result<List<TodoEntity>>(appCallback, true) {
                 override fun onSuccess(response: List<TodoEntity>?) {
                     super.onSuccess(response)
                     todoLiveData.postValue(response?.toMutableList())

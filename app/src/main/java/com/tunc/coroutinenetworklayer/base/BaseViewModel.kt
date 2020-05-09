@@ -29,8 +29,8 @@ open class BaseViewModel : ViewModel() {
     }
 
 
-    fun setView(mvpView: AppCallback) {
-        this.appCallback = mvpView
+    fun setView(appCallback: AppCallback) {
+        this.appCallback = appCallback
 
     }
 
