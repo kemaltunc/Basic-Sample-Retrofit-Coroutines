@@ -1,7 +1,7 @@
 package com.tunc.coroutinenetworklayer.domain.repository
 
-import com.tunc.coroutinenetworklayer.domain.entity.TodoEntity
+import com.tunc.coroutinenetworklayer.data.model.TodoResponse
 
 interface TodoRepository {
-    suspend fun getTodo(): List<TodoEntity>
+    suspend fun getTodo(): List<TodoResponse>
 }

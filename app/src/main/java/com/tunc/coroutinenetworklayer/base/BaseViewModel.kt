@@ -6,19 +6,33 @@ import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 open class BaseViewModel : ViewModel() {
+
+    lateinit var appCallback: AppCallback
+
+
     private val parentJob = Job()
 
     private val coroutineContext: CoroutineContext
-        get() = parentJob + Dispatchers.Default
+        get() = parentJob + Dispatchers.Main
 
     private val scope = CoroutineScope(coroutineContext)
-    val service = BaseService(scope, ApiErrorHandle())
+
+    val apiRequest = BaseService(scope, ApiErrorHandle())
+
 
     fun cancelRequest() = coroutineContext.cancel()
 
     override fun onCleared() {
         super.onCleared()
         scope.coroutineContext.cancelChildren()
+        cancelRequest()
     }
+
+
+    fun setView(mvpView: AppCallback) {
+        this.appCallback = mvpView
+
+    }
+
 
 }

@@ -1,4 +1,4 @@
-package com.tunc.coroutinenetworklayer.data.mappers
+package com.tunc.coroutinenetworklayer.domain.mappers
 
 import com.tunc.coroutinenetworklayer.data.model.TodoResponse
 import com.tunc.coroutinenetworklayer.domain.entity.TodoEntity
