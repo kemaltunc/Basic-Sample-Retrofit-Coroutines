@@ -13,7 +13,7 @@ open class BaseViewModel : ViewModel() {
     private val parentJob = Job()
 
     private val coroutineContext: CoroutineContext
-        get() = parentJob + Dispatchers.Main
+        get() = parentJob + Dispatchers.IO
 
     private val scope = CoroutineScope(coroutineContext)
 

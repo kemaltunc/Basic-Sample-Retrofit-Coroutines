@@ -2,7 +2,9 @@ package com.tunc.coroutinenetworklayer.base
 
 import com.tunc.coroutinenetworklayer.data.exception.ApiErrorHandle
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 
@@ -18,11 +20,17 @@ class BaseService(
         scope.launch {
             try {
                 val response = call.invoke()
-                result.onSuccess(response)
+                withContext(Main) {
+                    result.onSuccess(response)
+                }
             } catch (e: HttpException) {
-                result.onError(apiErrorHandle.traceErrorException(e))
+                withContext(Main) {
+                    result.onError(apiErrorHandle.traceErrorException(e))
+                }
             } catch (e: Throwable) {
-                result.onError(apiErrorHandle.traceErrorException(e))
+                withContext(Main) {
+                    result.onError(apiErrorHandle.traceErrorException(e))
+                }
             }
         }
     }
